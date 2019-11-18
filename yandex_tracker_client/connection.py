@@ -40,9 +40,13 @@ class Connection(object):
                  headers=None,
                  api_version=VERSION_V2,
                  verify=True,
+                 proxies={},
                  ):
 
         self.session = requests.Session()
+        if len(proxies):
+            #{'http': 'http://10.2.4.144:3133','https': 'https://10.2.4.144:3133',}
+            self.session.proxies = proxies
         self.session.verify = verify
 
         if headers is not None:
